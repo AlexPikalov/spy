@@ -1,0 +1,6 @@
+[package]
+name = "spy"
+version = "0.1.0"
+authors = ["Alex Pikalov <alex.pikalov.khar@gmail.com>"]
+
+[dependencies]
