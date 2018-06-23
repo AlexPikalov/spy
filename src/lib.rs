@@ -229,7 +229,7 @@ mod tests {
         assert!(snapshot.called(), "should be called");
         assert!(
             snapshot.called_with(&(&1i32)),
-            "should be called with () at least once"
+            "should be called with &1i32 at least once"
         );
         assert!(
             !snapshot.each_called_with(&(&1i32)),
@@ -259,7 +259,7 @@ mod tests {
         assert!(snapshot.called(), "should be called");
         assert!(
             snapshot.called_with(&(&1i32)),
-            "should be called with () at least once"
+            "should be called with &1i32 at least once"
         );
         assert!(
             !snapshot.each_called_with(&(&1i32)),
