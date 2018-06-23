@@ -1,4 +1,4 @@
-# Spy [![Build Status](https://travis-ci.org/AlexPikalov/spy.svg?branch=master)](https://travis-ci.org/AlexPikalov/spy)
+# Spy [![Build Status](https://travis-ci.org/AlexPikalov/spy.svg?branch=master)](https://travis-ci.org/AlexPikalov/spy) | [Documentation](https://docs.rs/spy)
 
 Spy crate is inspired by such famous Javascript testing tools
 as Jasmine and Sinon.js. It provides easy configurable spies
