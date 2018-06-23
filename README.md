@@ -38,3 +38,7 @@ fn iterator_all_test() {
    assert_eq!(snapshot.nth_call(1).expect("should be Some"), &(&1i32));
 }
 ```
+
+## LICENSE
+
+Spy is licensed under [MIT](./LICENSE_MIT) and [Apache-2.0](./LICENSE_APACHE) license
