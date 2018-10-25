@@ -193,7 +193,6 @@ mod tests {
 
     #[test]
     fn create_spy_test() {
-        // create spy function that takes no arguments
         let (spy_fn, spy) = spy!();
 
         no_args_cb(spy_fn);
@@ -217,7 +216,6 @@ mod tests {
 
     #[test]
     fn create_spy_with_args_test() {
-        // create spy function that takes no arguments
         let integers = vec![0i32, 1i32, 2i32];
 
         let (spy_fn, spy) = spy!(|n|);
@@ -244,7 +242,6 @@ mod tests {
 
     #[test]
     fn create_spy_with_args_and_return_test() {
-        // create spy function that takes no arguments
         let integers = vec![0i32, 1i32, 2i32];
 
         let (spy_fn, spy) = spy!(|n| n % 2 == 0);
