@@ -41,7 +41,7 @@ use std::sync::mpsc::Receiver;
 
 /// Spy object that tracks calls of associated spy function.
 pub struct Spy<Args> {
-    calls_recv: Receiver<Args>,
+    pub calls_recv: Receiver<Args>,
 }
 
 impl<Args: PartialEq> Spy<Args> {
