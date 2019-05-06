@@ -132,15 +132,23 @@ impl<Args: PartialEq> SpySnapshot<Args> {
 /// spy.
 ///
 /// ```rust
+/// use spy::{spy, Spy};
+///
 /// /// spy function that takes no argument and returns no value
 /// let (spy_fn, spy) = spy!();
+///
+/// spy_fn();
 ///
 /// /// spy function that takes one argument argument and returns no value.
 /// let (spy_fn, spy) = spy!(|n|);
 ///
+/// spy_fn(42);
+///
 /// /// spy function that takes one argument argument and returns some value
 /// /// evaluated basing on taken argument.
 /// let (spy_fn, spy) = spy!(|n| n % 2 == 0);
+///
+/// spy_fn(42);
 /// ```
 #[macro_export]
 macro_rules! spy {
