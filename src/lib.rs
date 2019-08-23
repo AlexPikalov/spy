@@ -247,6 +247,30 @@ mod tests {
         assert_eq!(snapshot.last_call().expect("should be Some"), &(&2i32));
         assert_eq!(snapshot.nth_call(1).expect("should be Some"), &(&1i32));
     }
+    
+    #[test]
+    fn create_spy_with_many_args_and_return_test() {
+        let (spy_fn, spy) = spy!(|_n, _y|);
+
+        spy_fn(1u8, 2u8);
+
+        assert!(!res, "should be false");
+
+        let snapshot = spy.snapshot();
+
+        assert!(snapshot.called(), "should be called");
+        assert!(
+            snapshot.called_with(&(1u8, 2u8)),
+            "should be called with (1u8, 2u8) at least once"
+        );
+        assert!(
+            snapshot.each_called_with(&(&1i32)),
+        );
+        assert_eq!(snapshot.all_calls(), &vec![&(1u8, 2u8)]);
+        assert_eq!(snapshot.first_call().expect("should be Some"), &(1u8, 2u8));
+        assert_eq!(snapshot.last_call().expect("should be Some"), &(1u8, 2u8));
+        assert_eq!(snapshot.nth_call(0).expect("should be Some"),&(1u8, 2u8));
+    }
 
     #[test]
     fn create_spy_with_args_and_return_test() {
