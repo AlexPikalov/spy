@@ -166,7 +166,7 @@ macro_rules! spy {
         {
             let (s, recv) = ::std::sync::mpsc::channel();
             let spy_fn = move |$($arg),*| {
-                s.send($($arg),*)
+                s.send(($($arg),*))
                     .expect("Problem with call agregation: cannot send call arguments to channel");
             };
             (spy_fn, Spy{ calls_recv: recv })
@@ -176,7 +176,7 @@ macro_rules! spy {
         {
             let (s, recv) = ::std::sync::mpsc::channel();
             let spy_fn = move |$($arg),*| {
-                s.send($($arg),*)
+                s.send(($($arg),*))
                     .expect("Problem with call agregation: cannot send call arguments to channel");
                 $expression
             };
@@ -253,8 +253,6 @@ mod tests {
         let (spy_fn, spy) = spy!(|_n, _y|);
 
         spy_fn(1u8, 2u8);
-
-        assert!(!res, "should be false");
 
         let snapshot = spy.snapshot();
 
