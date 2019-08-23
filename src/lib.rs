@@ -178,7 +178,7 @@ macro_rules! spy {
             let (s, recv) = ::std::sync::mpsc::channel();
             let spy_fn = move |$($arg),*| {
                 let args_tuple = ($($arg,) *);
-                s.send(args_tuple))
+                s.send(args_tuple)
                     .expect("Problem with call agregation: cannot send call arguments to channel");
                 $expression
             };
