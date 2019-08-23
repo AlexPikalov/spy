@@ -223,13 +223,16 @@ mod tests {
     }
 
     #[test]
-    fn create_spy_with_args_test() {
+    fn create_spy_with_args_and_return_test() {
         let integers = vec![0i32, 1i32, 2i32];
 
-        let (spy_fn, spy) = spy!(|n|);
+        let (spy_fn, spy) = spy!(|n| n % 2 == 0);
 
-        // test via Iterator::for_each
-        integers.iter().for_each(spy_fn);
+        // test via Iterator::all
+        let res = integers.iter().all(spy_fn);
+
+        assert!(!res, "should be false");
+
         let snapshot = spy.snapshot();
 
         assert!(snapshot.called(), "should be called");
@@ -241,11 +244,34 @@ mod tests {
             !snapshot.each_called_with(&(&1i32)),
             "should be called with different arguments"
         );
-        assert_eq!(snapshot.num_of_calls(), 3, "should be called 3 times");
-        assert_eq!(snapshot.all_calls(), &vec![(&0i32), (&1i32), (&2i32)]);
+        assert_eq!(snapshot.all_calls(), &vec![(&0i32), (&1i32)]);
         assert_eq!(snapshot.first_call().expect("should be Some"), &(&0i32));
-        assert_eq!(snapshot.last_call().expect("should be Some"), &(&2i32));
+        assert_eq!(snapshot.last_call().expect("should be Some"), &(&1i32));
         assert_eq!(snapshot.nth_call(1).expect("should be Some"), &(&1i32));
+    }
+    
+    #[test]
+    fn create_spy_with_args_and_return_test() {
+        let (spy_fn, spy) = spy!(|_n, _y| {});
+
+        spy_fn(1u8, 2u8);
+
+        assert!(!res, "should be false");
+
+        let snapshot = spy.snapshot();
+
+        assert!(snapshot.called(), "should be called");
+        assert!(
+            snapshot.called_with(&(1u8, 2u8)),
+            "should be called with (1u8, 2u8) at least once"
+        );
+        assert!(
+            snapshot.each_called_with(&(&1i32)),
+        );
+        assert_eq!(snapshot.all_calls(), &vec![&(1u8, 2u8)]);
+        assert_eq!(snapshot.first_call().expect("should be Some"), &(1u8, 2u8));
+        assert_eq!(snapshot.last_call().expect("should be Some"), &(1u8, 2u8));
+        assert_eq!(snapshot.nth_call(0).expect("should be Some"),&(1u8, 2u8));
     }
 
     #[test]
