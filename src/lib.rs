@@ -251,7 +251,7 @@ mod tests {
     }
     
     #[test]
-    fn create_spy_with_args_and_return_test() {
+    fn create_spy_with_many_args_and_return_test() {
         let (spy_fn, spy) = spy!(|_n, _y| {});
 
         spy_fn(1u8, 2u8);
