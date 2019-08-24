@@ -1,6 +1,6 @@
 [package]
 name = "spy"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Alex Pikalov <alex.pikalov.khar@gmail.com>"]
 description = "Rust spy functions for testing purposes"
 documentation = "https://docs.rs/spy"
